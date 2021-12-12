@@ -1,16 +1,16 @@
 import express from 'express';
 import axios from 'axios';
 
-const PORT = process.env.PORT || 4321;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.get('/wordpress/', async (req, res, next) => { 
     const content = req.query.content; 
-    const res = await axios.post(
+    const resp = await axios.post(
         'https://wordpress.kodaktor.ru/wp-json/jwt-auth/v1/token', 
         { username: 'gossjsstudent2017', password: '|||123|||456' }, 
     ); 
-    const token = res.data.token;
+    const token = resp.data.token;
     
     const wpRes = await axios.post(
         'https://wordpress.kodaktor.ru/wp-json/wp/v2/posts', 
